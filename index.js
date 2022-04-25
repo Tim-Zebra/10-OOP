@@ -7,7 +7,8 @@
 
 
 // Takes info about employees - 
-// 4 classes: employee => (manager/intern/engineer)
+// Consider adding a validation to ensure user input is the proper format.
+// Bonus: Add a delete function
 
 
 
