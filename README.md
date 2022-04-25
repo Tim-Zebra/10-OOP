@@ -1,5 +1,5 @@
-# 10-OOP
-UT Bootcamp Homework #10
+# Note Taker
+UT Bootcamp Homework #10 - Object Oriented Programing
 
 ## Description:
 
