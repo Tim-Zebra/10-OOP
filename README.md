@@ -18,3 +18,5 @@ UT Bootcamp Homework #10 - Object Oriented Programing
 
 
 ## Development Process (See commits for more details):
+Created base files and outline <br />
+Pseudocoded based off acceptance criteria/README.md 
