@@ -32,7 +32,7 @@ describe('Engineer', () => {
 
     // Gets and returns role
     describe('getRole', () => {
-        it('should get and return Engineer title', () => {
+        it('should get and return "Engineer"', () => {
             const desired = 'Engineer';
             const result = constructor.getRole();
     

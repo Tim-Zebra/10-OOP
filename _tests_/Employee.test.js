@@ -50,7 +50,7 @@ describe('Employee', () => {
 
     // Gets and returns role
     describe('getRole', () => {
-        it('should get and return role', () => {
+        it('should get and return "Employee"', () => {
             const desired = 'Employee';
             const result = constructor.getRole();
     
