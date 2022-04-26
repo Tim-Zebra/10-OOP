@@ -1,6 +1,12 @@
 // Node.js command line application
 // Uses inquirer package
-// Uses jest package
+const inquirer = require('inquirer');
+
+const Employee = require("./employee");
+const Manager = require("./manager");
+const Engineer = require("./engineer");
+const Intern = require("./intern");
+
 // Start application
 // Take in managers name, employee ID, email, and office #
 // Presented with a menu with the option to add an engineer or an inter, or finish building my 

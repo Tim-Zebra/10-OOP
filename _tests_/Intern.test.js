@@ -1,4 +1,4 @@
-const Intern = require("../lib/Intern");
+const Intern = require("../lib/intern");
 
 describe('Intern', () => {
     // Creates the constructor
