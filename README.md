@@ -15,7 +15,7 @@ UT Bootcamp Homework #10 - Object Oriented Programing
 
 
 ## References:
-
+Test code inspired by UT Web Dev Bootcamp: UTA-VIRT-FSF-FT-03-2022-U-LOL
 
 ## Development Process (See commits for more details):
 Created base files and outline <br />
