@@ -22,7 +22,7 @@ describe('Employee', () => {
     describe('getName', () => {
         it('should get and return employee name', () => {
             const desired = 'Tim';
-            const result = constructor.getName(test);
+            const result = constructor.getName();
     
             expect(result).toEqual(desired);
         });
@@ -48,7 +48,7 @@ describe('Employee', () => {
         });
     });
 
-    // Gets and returns Role
+    // Gets and returns role
     describe('getRole', () => {
         it('should get and return role', () => {
             const desired = 'Employee';

@@ -20,6 +20,7 @@ describe('Manager', () => {
     });
 
     // Confirming the values can be pulled and returned after the constructor
+        // Gets and returns role
     describe('getRole', () => {
         it('should get and return Manager title', () => {
             const desired = 'Manager';
