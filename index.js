@@ -1,16 +1,43 @@
 // Node.js command line application
-// Uses inquirer package
 const inquirer = require('inquirer');
 
-const Employee = require("./employee");
-const Manager = require("./manager");
-const Engineer = require("./engineer");
-const Intern = require("./intern");
+// Classes
+const Employee = require("./lib/employee");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 
 // Start application
 // Take in managers name, employee ID, email, and office #
 // Presented with a menu with the option to add an engineer or an inter, or finish building my 
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      message: 'What is the manager\'s name?',
+      name: 'manName',
+    },
 
+    {
+      type: 'input',
+      message: 'What is your employee ID?',
+      name: 'empId',
+    },
+    {
+        type: 'input',
+        message: 'Please enter your email',
+        name: 'email'
+    },
+    {
+        type: 'input',
+        message: 'Please enter your office phone number',
+        name: 'phoneNum'
+    }
+  ])
+  .then((response) => {
+      responses = [response.manName, response.empId, response.email];
+      console.log(responses);
+    });
 
 // Takes info about employees - 
 // Consider adding a validation to ensure user input is the proper format.
