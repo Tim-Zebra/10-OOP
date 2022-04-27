@@ -8,16 +8,45 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
 const team = [];
-// Take in manager's info
-async function createTeam() {
+let needTeamMembers = true;
 
-    // Gets user prompts
-    await createManager();
-    console.log('first', team);
+// Creates all aspects of team
+async function createTeam() {
+    // Gets manager info
     // await createManager();
-    await createManager();
-    console.log('second', team);
-    // team = createTeamMember(team);
+
+    // Adds team members
+    await addTeamMembers();
+    console.log(team);
+}
+
+// Adds team members
+async function addTeamMembers() {
+    // Prompt to add engineer or intern to team, if neither then loop cancels 
+    while(needTeamMembers === true) {
+        await inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    message: 'Please select a type of team member to add:',
+                    name: 'choice',
+                    choices: ['Add Engineer','Add Intern','Stop building team']
+                }
+            ])
+            .then((response) => {
+                if (response.choice === 'Stop building team') {
+                    console.log('stop');
+                    needTeamMembers = false;
+                } else if (response.choice === 'Add Engineer') {
+                    // addEngineer();
+                    console.log('engin')
+                } else if (response.choice === 'Add Intern') {
+                    addIntern();
+                    console.log('intern')
+                }
+            })    
+    }
+
 }
 
 async function createManager() {
@@ -45,9 +74,8 @@ async function createManager() {
         } 
     ];
 
-
     await inquirer
-        // Gets manager info and stores it into our team object
+        // Gets manager info and stores it into our team array
         .prompt(managerPrompts)
         .then((response) => {
             let employee = new Manager(response.name, response.empId, response.email, response.phoneNum);
@@ -55,9 +83,45 @@ async function createManager() {
         })     
 }
 
-function createTeamMember(team) {
-    console.log('b patient');
+async function addEngineer() {
+    // Manager Prompts
+    const EngineerPrompts = [
+        {
+            type: 'input',
+            message: 'What is the manager\'s name?',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'What is your employee ID?',
+            name: 'empId',
+        },
+        {
+            type: 'input',
+            message: 'Please enter your email',
+            name: 'email'
+        },
+        {
+            type: 'input',
+            message: 'Please enter your office phone number',
+            name: 'phoneNum'
+        } 
+    ];
+
+    await inquirer
+        // Gets manager info and stores it into our team array
+        .prompt(managerPrompts)
+        .then((response) => {
+            let employee = new Manager(response.name, response.empId, response.email, response.phoneNum);
+            team.push(employee);
+        })     
 }
+
+async function addIntern() {
+
+}
+
+
 
 
 // Start application
