@@ -6,6 +6,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "inquirer": "^8.2.3"
+    "inquirer": "^8.2.3",
+    "inquirer-promise": "^1.0.0"
   }
 }

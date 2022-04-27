@@ -1,5 +1,5 @@
 // Node.js command line application
-const inquirer = require('inquirer');
+const inquirer = require('inquirer-promise');
 
 // Classes
 const Employee = require("./lib/employee");
@@ -7,45 +7,58 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
-// Manager Prompts
-const managerPrompts = [
-    {
-        type: 'input',
-        message: 'What is the manager\'s name?',
-        name: 'name',
-    },
-    {
-        type: 'input',
-        message: 'What is your employee ID?',
-        name: 'empId',
-    },
-    {
-        type: 'input',
-        message: 'Please enter your email',
-        name: 'email'
-    },
-    {
-        type: 'input',
-        message: 'Please enter your office phone number',
-        name: 'phoneNum'
-    }];
-
-
+const team = [];
 // Take in manager's info
-function createTeam() {
-    let team = {};
-    inquirer
+async function createTeam() {
+
+    // Gets user prompts
+    await createManager();
+    console.log('first', team);
+    // await createManager();
+    await createManager();
+    console.log('second', team);
+    // team = createTeamMember(team);
+}
+
+async function createManager() {
+    // Manager Prompts
+    const managerPrompts = [
+        {
+            type: 'input',
+            message: 'What is the manager\'s name?',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'What is your employee ID?',
+            name: 'empId',
+        },
+        {
+            type: 'input',
+            message: 'Please enter your email',
+            name: 'email'
+        },
+        {
+            type: 'input',
+            message: 'Please enter your office phone number',
+            name: 'phoneNum'
+        } 
+    ];
+
+
+    await inquirer
+        // Gets manager info and stores it into our team object
         .prompt(managerPrompts)
         .then((response) => {
             let employee = new Manager(response.name, response.empId, response.email, response.phoneNum);
-            console.log(employee);
-            console.log(typeof employee);
-            let title = employee.getRole();
-            team[title] = employee;
-
-            console.log(team);
-        });
+            team.push(employee);
+        })     
 }
+
+function createTeamMember(team) {
+    console.log('b patient');
+}
+
 
 // Start application
 function init() {
