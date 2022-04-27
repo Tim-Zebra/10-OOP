@@ -24,6 +24,7 @@ async function createTeam() {
 async function addTeamMembers() {
     // Prompt to add engineer or intern to team, if neither then loop cancels 
     while(needTeamMembers === true) {
+        let choice = '';
         await inquirer
             .prompt([
                 {
@@ -34,17 +35,16 @@ async function addTeamMembers() {
                 }
             ])
             .then((response) => {
-                if (response.choice === 'Stop building team') {
-                    console.log('stop');
-                    needTeamMembers = false;
-                } else if (response.choice === 'Add Engineer') {
-                    // addEngineer();
-                    console.log('engin')
-                } else if (response.choice === 'Add Intern') {
-                    addIntern();
-                    console.log('intern')
-                }
-            })    
+                choice = response.choice;
+            })   
+            
+        if (choice === 'Stop building team') {
+            needTeamMembers = false;
+        } else if (choice === 'Add Engineer') {
+            await addEngineer();
+        } else if (choice === 'Add Intern') {
+            await addIntern();
+        }
     }
 
 }
@@ -88,7 +88,7 @@ async function addEngineer() {
     const engineerPrompts = [
         {
             type: 'input',
-            message: 'What is the engineer\s name?',
+            message: 'What is the engineer\'s name?',
             name: 'name',
         },
         {
@@ -118,7 +118,36 @@ async function addEngineer() {
 }
 
 async function addIntern() {
+    const internPrompts = [
+        {
+            type: 'input',
+            message: 'What is the intern\'s name?',
+            name: 'name',
+        },
+        {
+            type: 'input',
+            message: 'What is their employee ID?',
+            name: 'empId',
+        },
+        {
+            type: 'input',
+            message: 'Please enter their email:',
+            name: 'email'
+        },
+        {
+            type: 'input',
+            message: 'Please enter the name of their school:',
+            name: 'school'
+        } 
+    ];
 
+    await inquirer
+        // Gets manager info and stores it into our team array
+        .prompt(internPrompts)
+        .then((response) => {
+            let employee = new Intern(response.name, response.empId, response.email, response.school);
+            team.push(employee);
+        })     
 }
 
 
