@@ -64,12 +64,12 @@ async function createManager() {
         },
         {
             type: 'input',
-            message: 'Please enter your email',
+            message: 'Please enter your email:',
             name: 'email'
         },
         {
             type: 'input',
-            message: 'Please enter your office phone number',
+            message: 'Please enter your office phone number:',
             name: 'phoneNum'
         } 
     ];
@@ -85,34 +85,34 @@ async function createManager() {
 
 async function addEngineer() {
     // Manager Prompts
-    const EngineerPrompts = [
+    const engineerPrompts = [
         {
             type: 'input',
-            message: 'What is the manager\'s name?',
+            message: 'What is the engineer\s name?',
             name: 'name',
         },
         {
             type: 'input',
-            message: 'What is your employee ID?',
+            message: 'What is their employee ID?',
             name: 'empId',
         },
         {
             type: 'input',
-            message: 'Please enter your email',
+            message: 'Please enter their email:',
             name: 'email'
         },
         {
             type: 'input',
-            message: 'Please enter your office phone number',
-            name: 'phoneNum'
+            message: 'Please enter their GitHub username:',
+            name: 'github'
         } 
     ];
 
     await inquirer
         // Gets manager info and stores it into our team array
-        .prompt(managerPrompts)
+        .prompt(engineerPrompts)
         .then((response) => {
-            let employee = new Manager(response.name, response.empId, response.email, response.phoneNum);
+            let employee = new Engineer(response.name, response.empId, response.email, response.github);
             team.push(employee);
         })     
 }
