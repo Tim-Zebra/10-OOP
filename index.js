@@ -160,7 +160,7 @@ async function generatreHTML() {
     let filePath = 'C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/'
 
     // Adds first section of HTML file
-    let htmlData = generateHTMLHead();
+    let htmlData = 'doivsanvosav';
 
     // HTML Elements
     let mngSectEl ='';
@@ -170,15 +170,20 @@ async function generatreHTML() {
     // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
         if (value.getRole() === 'Manager') {
-            mngSectEl = addAsHTMLComponent(htmlData, (generateCardEl(value)));
+            mngSectEl = addAsHTMLComponent(mngSectEl, (generateCardEl(value)));
             fileName = value.name + 'sTeam.html'
         } else if (value.getRole() === 'Engineer') {
-            empSectEl = addAsHTMLComponent(htmlData, (generateCardEl(empSectEl)));
+            empSectEl = addAsHTMLComponent(empSectEl, (generateCardEl(value)));
 
         } else if (value.getRole() === 'Intern') {
-            intSectEl = addAsHTMLComponent(htmlData, (generateCardEl(intSectEl)));
+            intSectEl = addAsHTMLComponent(intSectEl, (generateCardEl(value)));
         }
     }
+
+    // Converts El to sections tags
+    mngSectEl = convertToSection(mngSectEl);
+    empSectEl = convertToSection(empSectEl);
+    intSectEl = convertToSection(intSectEl);
 
     // Adds center section ie adds elements into <main> tag
     htmlData = addAsHTMLComponent(htmlData, mngSectEl);
@@ -206,12 +211,12 @@ return `
         <meta charset="UTF-8" />
 
         <!-- Tab Heading -->
-        <link rel="icon" type="image/x-icon" href="./assets/images/favicons/team.ico" id="favicon"> 
+        <link rel="icon" type="image/x-icon" href="../dist/assets/images/favicons/team.ico" id="favicon"> 
         <title>Team Builder Application</title>
 
         <!-- CSS scripts: Bootstrap, custom-->
-        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="../dist/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../dist/assets/css/style.css">
     </head>
 
     <body>
@@ -219,8 +224,7 @@ return `
             <h1>Manager Team Dashboard</h1>
         </header>
         
-        <main>
-        `;
+        <main>`;
 }
 
 // Generates the bottom portion of the HTML.
@@ -266,16 +270,16 @@ function generateCardEl(obj) {
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
-        cardEl = `
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">${obj.name}e</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
-                        <p class="card-text">Employee ID: ${obj.id}</p>
-                        <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
-                        <a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a>
-                    </div>
-                </div>`
+cardEl = `
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${obj.name}e</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                <p class="card-text">Employee ID: ${obj.id}</p>
+                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
+                <a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a>
+            </div>
+        </div>`
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
@@ -303,6 +307,14 @@ function openHTMLFile(string) {
 async function writeToFile (fileName, filePath, data) {
     fs.writeFileSync(`${filePath}${fileName}`, data, (err) =>
     err ? console.error(err) : console.log('Success!'));
+}
+
+// Converts to a <section> tag
+function convertToSection(html) {
+return`
+        <section>
+            ${html}
+        </section>`
 }
 
 // Starts application
