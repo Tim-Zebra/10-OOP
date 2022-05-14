@@ -2,10 +2,6 @@
 const inquirer = require('inquirer-promise');
 const fs = require('fs');
 const open = require('open');
-// Applies JQ
-const { JSDOM } = require( "jsdom" );
-const { window } = new JSDOM( "" );
-const $ = require( 'jquery' )( window );
 
 // Classes
 const Employee = require("./lib/employee");
@@ -189,6 +185,7 @@ async function generatreHTML() {
         main.append(empSectEl);
         main.append(intSectEl);
 
+        console.log('This happened', main);
         // Adds center section to HTML file
         htmlData = addAsHTMLComponent(htmlData, main);
 
@@ -197,7 +194,7 @@ async function generatreHTML() {
 
     // Creates HTML Page
     await writeToFile(fileName, filePath, htmlData,);
-    console.log('This happened', filePath+fileName);
+
     // Boots up HTML page
     openHTMLFile(filePath+fileName);
 }
@@ -292,12 +289,12 @@ function generateCardEl(obj) {
     return cardEl;
 }
 
-// Opens completed HTML file
+// Opens completed HTML file from generatedHTMLs Folder
 function openHTMLFile(string) {
     open(string);
 }
 
-// Creates file (copied from my)
+// Creates file and writes to generatedHTMLs folder
 async function writeToFile (fileName, filePath, data) {
     fs.writeFileSync(`${filePath}${fileName}`, data, (err) =>
     err ? console.error(err) : console.log('Success!'));
