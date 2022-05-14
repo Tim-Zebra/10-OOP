@@ -157,21 +157,26 @@ async function addIntern() {
 // Processes obtained data 
 function generatreHTML() {
     // HTML Elements
-    // let main = $('#main');
-    // let mngSectEl = $('<section>');
-    // let empSectEl = $('<section>');
-    // let intSectEl = $('<section>');
+    let main = $('#main');
+    let mngSectEl = $('<section>');
+    let empSectEl = $('<section>');
+    let intSectEl = $('<section>');
     
     // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
         if (value.getRole() === 'Manager') {
-            // mngSectEl.append(generateCardEl(value)); 
+            mngSectEl.append(generateCardEl(value)); 
         } else if (value.getRole() === 'Engineer') {
-            // empSectEl.append(generateCardEl(value))
+            empSectEl.append(generateCardEl(value));
 
         } else if (value.getRole() === 'Intern') {
-            // intSectEl.append(generateCardEl(value))
+            intSectEl.append(generateCardEl(value));
         }
+
+        // Appents elements to main
+        main.append(mngSectEl);
+        main.append(empSectEl);
+        main.append(intSectEl);
     }
 
 
@@ -185,50 +190,47 @@ function generatreHTML() {
 
 // Add team member info to card, set in body of card
 function generateCardEl(obj) {
+    // Generates manager card, accounting for manager's unique properties
     if (obj.getRole() === 'Manager') {
         let cardEl = `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">${obj.name}e</h5>
-                <p class="card-text">.</p>
-                <a href="#" class="card-text">Card link</a>
-                <a href="#" class="card-text">Another link</a>
+                <h5 class="card-title">${obj.name}e</h5>+
+                <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+                <p class="card-text">Employee ID: ${obj.id}</p>
+                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
+                <a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a>
             </div>
         </div>`
-    } else if (obj.getRole() === 'Engineer') {
+    } 
+    // Generates engineer card, accounting for engineer's unique properties
+    else if (obj.getRole() === 'Engineer') {
         let cardEl = `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">${obj.name}e</h5>
-                <p class="card-text">.</p>
-                <a href="#" class="card-text">Card link</a>
-                <a href="#" class="card-text">Another link</a>
+                <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                <p class="card-text">Employee ID: ${obj.id}</p>
+                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
+                <a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a>
             </div>
         </div>`
-
-    } else if (obj.getRole() === 'Intern') {
+    } 
+    // Generates intern card, accounting for intern's unique properties
+    else if (obj.getRole() === 'Intern') {
         let cardEl = `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">${obj.name}e</h5>
-                <p class="card-text">.</p>
-                <a href="#" class="card-text">Card link</a>
-                <a href="#" class="card-text">Another link</a>
+                <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+                <p class="card-text">Employee ID: ${obj.id}</p>
+                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
+                <a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a>
             </div>
         </div>`
     }
-    
-    
-    let cardEl = `
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">${obj.name}e</h5>
-            <p class="card-text">.</p>
-            <a href="#" class="card-text">Card link</a>
-            <a href="#" class="card-text">Another link</a>
-        </div>
-    </div>`
 
+    return cardEl;
 }
 
 // Start application
