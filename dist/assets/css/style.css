@@ -1,6 +1,18 @@
+header {
+  height: 150px;
+  color: whitesmoke;
+  background-color: rgb(232, 71, 86);
+  display:flex
+}
+
+header h1 {
+  text-align: center;
+  width: 100%;
+}
+
 footer {
   /* Sends footer to the bottom and centers*/
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
