@@ -198,33 +198,31 @@ function generatreHTML() {
 }
 
 function generateHTMLHead() {
-`
-<!DOCTYPE html>
-<html lang="en-us">
+    return `
+    <!DOCTYPE html>
+    <html lang="en-us">
 
-    <head>       
-        
-        <meta charset="UTF-8" />
+        <head>       
+            
+            <meta charset="UTF-8" />
 
-        <!-- Tab Heading -->
-        <link rel="icon" type="image/x-icon" href="./assets/images/favicons/team.ico" id="favicon"> 
-        <title>Team Builder Application</title>
+            <!-- Tab Heading -->
+            <link rel="icon" type="image/x-icon" href="./assets/images/favicons/team.ico" id="favicon"> 
+            <title>Team Builder Application</title>
 
-        <!-- CSS scripts: Bootstrap, custom-->
-        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
-    </head>
+            <!-- CSS scripts: Bootstrap, custom-->
+            <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="./assets/css/style.css">
+        </head>
 
-    <body>
-        <header>
-            <h1>Manager Team Dashboard</h1>
-        </header>`
-
-    return html;
+        <body>
+            <header>
+                <h1>Manager Team Dashboard</h1>
+            </header>`;
 }
 
 function generateHTMLBottom() {
-    `
+    return `
             <!-- JS scripts: JQ, Popper.js, Bootstrap.js, custom -->
             <script src="./assets/js/jquery.js"></script>
             <script src="./assets/js/popper.js"></script>
@@ -232,11 +230,8 @@ function generateHTMLBottom() {
         </body>
     
     </html>`
-    
-        return html;
 }
     
-
 // Add team member info to card, set in body of card
 function generateCardEl(obj) {
     // Generates manager card, accounting for manager's unique properties
@@ -291,35 +286,9 @@ const writeToFile = (fileName, data) => {
     fs.writeFile(`${fileName}`, data, (err) =>
     err ? console.error(err) : console.log('Success!'));
 }
-// Start application
+
+// Starts application
 function init() {
-    // createTeam();
+    createTeam();
 }
 init();
-
-
-
-
-// HTML functionality
-// Click on an email address => default email program opens
-// Click on github name => new tab for github repo
-
-// // Save data locally from input
-// function saveData () {
-//     // Stores new data into the object
-//     fs.writeFile("teamData.json", JSON.stringify(team), (err) =>
-//     err ? console.error(err) : console.log('Success!'));
-// }
-
-// // loads local data if present
-// function loadData () {
-//     // Stores new data into the object
-//     let teamData = [];
-//     fs.readFile("teamData.json", 'utf8', (err,data) => {
-//         if (!err) {
-//             teamData=JSON.parse(data);
-//             team = teamData;
-//             generatreHTML()
-//         }
-//     });
-// }
