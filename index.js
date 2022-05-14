@@ -299,7 +299,7 @@ function openHTMLFile(string) {
 
 // Creates file (copied from my)
 async function writeToFile (fileName, data) {
-    fs.writeFile(`${fileName}`, data, (err) =>
+    fs.writeFileSync(`${fileName}`, data, (err) =>
     err ? console.error(err) : console.log('Success!'));
 }
 
