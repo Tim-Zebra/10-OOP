@@ -155,6 +155,9 @@ async function addIntern() {
 
 // Processes obtained data 
 function generatreHTML() {
+    // filenames
+    let fileName = "";
+    let filePath = 'C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/'
     // HTML Elements
     let main = $('#main');
     let mngSectEl = $('<section>');
@@ -165,26 +168,27 @@ function generatreHTML() {
     for (const value of team) {
         if (value.getRole() === 'Manager') {
             mngSectEl.append(generateCardEl(value)); 
+            fileName = value.name + 'sTeam.html'
         } else if (value.getRole() === 'Engineer') {
             empSectEl.append(generateCardEl(value));
 
         } else if (value.getRole() === 'Intern') {
             intSectEl.append(generateCardEl(value));
         }
-
+    }
         // Appents elements to main
         main.append(mngSectEl);
         main.append(empSectEl);
         main.append(intSectEl);
 
-        // Boots up HTML page
-    }
-
-
     // Append each of these sections to the main. Organized by Manager, Employee, and Intern
     // Add the card class to each of these elements inside the section
     // Display the sections as a block
 
+    // Boots up HTML page
+    open(`C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/index.html`);
+
+    openHTMLFile(filePath+fileName);
 }
 
 
@@ -234,18 +238,22 @@ function generateCardEl(obj) {
     return cardEl;
 }
 
+function openHTMLFile(string) {
+    open(string);
+}
+
 // Start application
 function init() {
     // createTeam();
 
- 
-
-  
+    // fileName = value.name + 'sTeam.html'
 // Opens the file immediately into desktop
-open('C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/index.html');
-
+let fileName = "index.html";
+let filePath = 'C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/';
+openHTMLFile(filePath+fileName);
 }
 init();
+
 
 
 
