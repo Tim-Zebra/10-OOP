@@ -164,23 +164,13 @@ function generatreHTML() {
     
     // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
-        // Finds the role and appends to the desired section
         if (value.getRole() === 'Manager') {
-            // Add title, set as header of card
-            mngSectEl = generateHTMLEl(value); 
-            // Add attributes, set in body of card
-
-
+            // mngSectEl.append(generateCardEl(value)); 
         } else if (value.getRole() === 'Engineer') {
-            // Add title, set as header of card
-
-            // Add attributes, set in body of card
+            // empSectEl.append(generateCardEl(value))
 
         } else if (value.getRole() === 'Intern') {
-            // Add title, set as header of card
-
-            // Add attributes, set in body of card
-
+            // intSectEl.append(generateCardEl(value))
         }
     }
 
@@ -189,8 +179,58 @@ function generatreHTML() {
     // Add the card class to each of these elements inside the section
     // Display the sections as a block
 
+}
+
+
+
+// Add team member info to card, set in body of card
+function generateCardEl(obj) {
+    if (obj.getRole() === 'Manager') {
+        let cardEl = `
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${obj.name}e</h5>
+                <p class="card-text">.</p>
+                <a href="#" class="card-text">Card link</a>
+                <a href="#" class="card-text">Another link</a>
+            </div>
+        </div>`
+    } else if (obj.getRole() === 'Engineer') {
+        let cardEl = `
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${obj.name}e</h5>
+                <p class="card-text">.</p>
+                <a href="#" class="card-text">Card link</a>
+                <a href="#" class="card-text">Another link</a>
+            </div>
+        </div>`
+
+    } else if (obj.getRole() === 'Intern') {
+        let cardEl = `
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">${obj.name}e</h5>
+                <p class="card-text">.</p>
+                <a href="#" class="card-text">Card link</a>
+                <a href="#" class="card-text">Another link</a>
+            </div>
+        </div>`
+    }
+    
+    
+    let cardEl = `
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">${obj.name}e</h5>
+            <p class="card-text">.</p>
+            <a href="#" class="card-text">Card link</a>
+            <a href="#" class="card-text">Another link</a>
+        </div>
+    </div>`
 
 }
+
 // Start application
 function init() {
     createTeam();

@@ -18,8 +18,9 @@ Choose 'Stop building team' to send your data to the HTML
 N/A
 
 ## References:
-Test code inspired by UT Web Dev Bootcamp: UTA-VIRT-FSF-FT-03-2022-U-LOL <br />
-Array storage inspired by: <a href="https://github.com/yummy314159265">Rodin</a>
+* Test code inspired by UT Web Dev Bootcamp: UTA-VIRT-FSF-FT-03-2022-U-LOL <br />
+* Array storage inspired by: <a href="https://github.com/yummy314159265">Rodin</a>
+* Card obtained from: https://getbootstrap.com/docs/4.0/components/card/
 
 ## Development Process (See commits for more details):
 Created base files and outline <br />
@@ -27,3 +28,5 @@ Pseudocoded based off acceptance criteria/README.md <br />
 Tested classes using Jest <br />
 Continued after passing all tests <br />
 Created input using inquirer <br />
+6. Learned a lesson: Turned in 70% functional to make deadline, even though final deadline was not for 5+ weeks
+7. Pseudocoded HTML components
