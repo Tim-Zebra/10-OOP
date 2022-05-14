@@ -160,7 +160,7 @@ async function generatreHTML() {
     let filePath = 'C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/'
 
     // Adds first section of HTML file
-    let htmlData = 'doivsanvosav';
+    let htmlData = generateHTMLHead();
 
     // HTML Elements
     let mngSectEl ='';
@@ -233,7 +233,7 @@ return `
     <main>
 
     <footer class="footer">
-        <a href="https://github.com/Tim-Zebra">Application created by Timothy Zalewski, 2022</a>
+        <p><a href="https://github.com/Tim-Zebra">Application created by Timothy Zalewski, 2022</a></p>
     </footer>
 
     <!-- JS scripts: JQ, Popper.js, Bootstrap.js, custom -->
@@ -257,40 +257,39 @@ function generateCardEl(obj) {
     let cardEl = '';
     // Generates manager card, accounting for manager's unique properties
     if (obj.getRole() === 'Manager') {
-        cardEl = `
-                <div class="card" style="width: 18rem;">
+        cardEl = `<div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">${obj.name}e</h5>+
-                        <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+                        <div class="card-header">    
+                            <h5 class="card-title">${obj.name}e</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+                        </div>
                         <p class="card-text">Employee ID: ${obj.id}</p>
-                        <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
-                        <a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a>
+                        <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
+                        <p><a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a></p>
                     </div>
                 </div>`
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
-cardEl = `
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">${obj.name}e</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
-                <p class="card-text">Employee ID: ${obj.id}</p>
-                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
-                <a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a>
-            </div>
-        </div>`
+        cardEl = `<div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${obj.name}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                        <p class="card-text">Employee ID: ${obj.id}</p>
+                        <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
+                        <p><a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a></p>
+                    </div>
+                </div>`
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
-        cardEl = `
-                <div class="card" style="width: 18rem;">
+        cardEl = `<div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">${obj.name}e</h5>
+                        <h5 class="card-title">${obj.name}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
                         <p class="card-text">Employee ID: ${obj.id}</p>
-                        <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
-                        <a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a>
+                        <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
+                        <p><a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a></p>
                     </div>
                 </div>`
     }
@@ -311,8 +310,7 @@ async function writeToFile (fileName, filePath, data) {
 
 // Converts to a <section> tag
 function convertToSection(html) {
-return`
-        <section>
+return`<section>
             ${html}
         </section>`
 }
