@@ -196,7 +196,7 @@ async function generatreHTML() {
         htmlData = addAsHTMLComponent(htmlData, generateHTMLBottom());
 
     // Creates HTML Page
-    await writeToFile(fileName, htmlData);
+    await writeToFile(fileName, filePath, htmlData,);
     console.log('This happened', filePath+fileName);
     // Boots up HTML page
     openHTMLFile(filePath+fileName);
@@ -298,8 +298,8 @@ function openHTMLFile(string) {
 }
 
 // Creates file (copied from my)
-async function writeToFile (fileName, data) {
-    fs.writeFileSync(`${fileName}`, data, (err) =>
+async function writeToFile (fileName, filePath, data) {
+    fs.writeFileSync(`${filePath}${fileName}`, data, (err) =>
     err ? console.error(err) : console.log('Success!'));
 }
 
