@@ -30,3 +30,5 @@ Continued after passing all tests <br />
 Created input using inquirer <br />
 6. Learned a lesson: Turned in 70% functional to make deadline, even though final deadline was not for 5+ weeks
 7. Pseudocoded HTML components
+8. Generated HTML doc and added components
+9. HTML doc saved to be opened for future use

@@ -1,6 +1,7 @@
 // Node.js command line application
 const inquirer = require('inquirer-promise');
 const fs = require('fs');
+const open = require('open');
 
 // Classes
 const Employee = require("./lib/employee");
@@ -18,8 +19,6 @@ async function createTeam() {
 
     // Adds team members
     await addTeamMembers();
-
-    // Future Dev: Delete Option
 
     // Starts HTML Generation
     generatreHTML();
@@ -177,6 +176,8 @@ function generatreHTML() {
         main.append(mngSectEl);
         main.append(empSectEl);
         main.append(intSectEl);
+
+        // Boots up HTML page
     }
 
 
@@ -235,10 +236,18 @@ function generateCardEl(obj) {
 
 // Start application
 function init() {
-    createTeam();
+    // createTeam();
+
+ 
+
+  
+// Opens the file immediately into desktop
+open('C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/index.html');
 
 }
 init();
+
+
 
 // HTML functionality
 // Click on an email address => default email program opens
