@@ -158,8 +158,12 @@ function generatreHTML() {
     // filenames
     let fileName = "";
     let filePath = 'C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/'
+
+    // Adds first section of HTML file
+    let htmlData = generateHTMLHead();
+
     // HTML Elements
-    let main = $('#main');
+    let main = $('<main>');
     let mngSectEl = $('<section>');
     let empSectEl = $('<section>');
     let intSectEl = $('<section>');
@@ -181,17 +185,57 @@ function generatreHTML() {
         main.append(empSectEl);
         main.append(intSectEl);
 
-    // Append each of these sections to the main. Organized by Manager, Employee, and Intern
-    // Add the card class to each of these elements inside the section
-    // Display the sections as a block
+        // Adds center section to HTML file
+        htmlData.append(main);
 
+        // Adds last section to HTML file
+        htmlData.append(generateHTMLBottom());
+
+    // Creates HTML Page
+    writeToFile(fileName, htmlData);
     // Boots up HTML page
-    open(`C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/index.html`);
-
     openHTMLFile(filePath+fileName);
 }
 
+function generateHTMLHead() {
+`
+<!DOCTYPE html>
+<html lang="en-us">
 
+    <head>       
+        
+        <meta charset="UTF-8" />
+
+        <!-- Tab Heading -->
+        <link rel="icon" type="image/x-icon" href="./assets/images/favicons/team.ico" id="favicon"> 
+        <title>Team Builder Application</title>
+
+        <!-- CSS scripts: Bootstrap, custom-->
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>Manager Team Dashboard</h1>
+        </header>`
+
+    return html;
+}
+
+function generateHTMLBottom() {
+    `
+            <!-- JS scripts: JQ, Popper.js, Bootstrap.js, custom -->
+            <script src="./assets/js/jquery.js"></script>
+            <script src="./assets/js/popper.js"></script>
+            <script src="./assets/js/bootstrap.bundle.min.js"></script>
+        </body>
+    
+    </html>`
+    
+        return html;
+}
+    
 
 // Add team member info to card, set in body of card
 function generateCardEl(obj) {
@@ -242,15 +286,14 @@ function openHTMLFile(string) {
     open(string);
 }
 
+// Creates file
+const writeToFile = (fileName, data) => {
+    fs.writeFile(`${fileName}`, data, (err) =>
+    err ? console.error(err) : console.log('Success!'));
+}
 // Start application
 function init() {
     // createTeam();
-
-    // fileName = value.name + 'sTeam.html'
-// Opens the file immediately into desktop
-let fileName = "index.html";
-let filePath = 'C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/';
-openHTMLFile(filePath+fileName);
 }
 init();
 
