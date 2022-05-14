@@ -278,7 +278,7 @@ function generateCardEl(obj) {
     let cardEl;
     // Generates manager card, accounting for manager's unique properties
     if (obj.getRole() === 'Manager') {
-        cardEl = `  <div class="card" style="width: 18rem;">
+        cardEl = `<div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <div class="card-header">    
                         <h5 class="card-title">${obj.name}e</h5>
@@ -292,10 +292,12 @@ function generateCardEl(obj) {
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
-        cardEl = `  <div class="card" style="width: 18rem;">
+        cardEl = `<div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">${obj.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                    <div class="card-header">    
+                        <h5 class="card-title">${obj.name}e</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                    </div>
                     <p class="card-text">Employee ID: ${obj.id}</p>
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
                     <p><a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a></p>
@@ -304,10 +306,12 @@ function generateCardEl(obj) {
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
-        cardEl = `  <div class="card" style="width: 18rem;">
+        cardEl = `<div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">${obj.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+                    <div class="card-header"> 
+                        <h5 class="card-title">${obj.name}e</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+                    </div>
                     <p class="card-text">Employee ID: ${obj.id}</p>
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
                     <p><a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a></p>
