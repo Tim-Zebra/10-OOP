@@ -167,18 +167,29 @@ async function generatreHTML() {
     let engSectEl;
     let intSectEl;
     
-    // Go through all the options in the array, and adds those to their respective section
+    console.log('This happened', mngSectEl);
+
+    // Go through all the employees in the array, and adds those to their respective section
     for (const value of team) {
         if (value.getRole() === 'Manager') {
-            mngSectEl = addAsHTMLComponent(mngSectEl, (generateCardEl(value)));
-            
             // creates part of file name based off manager's name
             fileName = value.name + 'sTeam.html'
+            
+            mngSectEl = generateCardEl(value);
         } else if (value.getRole() === 'Engineer') {
-            engSectEl = addAsHTMLComponent(engSectEl, (generateCardEl(value)));
-
+            // Prevents extra space from forming in HTML when undefined
+            if (engSectEl === undefined) {
+                engSectEl = generateCardEl(value);
+            } else {
+                engSectEl = addAsHTMLComponent(engSectEl, (generateCardEl(value)));
+            }
         } else if (value.getRole() === 'Intern') {
-            intSectEl = addAsHTMLComponent(intSectEl, (generateCardEl(value)));
+            // Prevents extra space from forming in HTML when undefined
+            if (intSectEl === undefined) {
+                intSectEl = generateCardEl(value);
+            } else {
+                intSectEl = addAsHTMLComponent(intSectEl, (generateCardEl(value)));
+            }
         }
     }
 
@@ -234,7 +245,8 @@ return `
             <h1>Manager Team Dashboard</h1>
         </header>
         
-        <main>`;
+        <main>
+        `;
 }
 
 // Generates the bottom portion of the HTML.
@@ -258,7 +270,6 @@ return `
 // Acts as an '.append'
 function addAsHTMLComponent(currentData, newData) {
 return `${currentData}
-    
         ${newData}`
 }
 
@@ -267,43 +278,43 @@ function generateCardEl(obj) {
     let cardEl;
     // Generates manager card, accounting for manager's unique properties
     if (obj.getRole() === 'Manager') {
-        cardEl = `------      <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-header">    
-                            <h5 class="card-title">${obj.name}e</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
-                        </div>
-                        <p class="card-text">Employee ID: ${obj.id}</p>
-                        <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
-                        <p><a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a></p>
+        cardEl = `  <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <div class="card-header">    
+                        <h5 class="card-title">${obj.name}e</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
                     </div>
-                </div>`
+                    <p class="card-text">Employee ID: ${obj.id}</p>
+                    <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
+                    <p><a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a></p>
+                </div>
+            </div>`
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
-        cardEl = `      <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">${obj.name}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
-                        <p class="card-text">Employee ID: ${obj.id}</p>
-                        <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
-                        <p><a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a></p>
-                    </div>
-                </div>`
+        cardEl = `  <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${obj.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                    <p class="card-text">Employee ID: ${obj.id}</p>
+                    <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
+                    <p><a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a></p>
+                </div>
+            </div>`
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
-        cardEl = `      <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">${obj.name}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
-                        <p class="card-text">Employee ID: ${obj.id}</p>
-                        <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
-                        <p><a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a></p>
-                    </div>
-                </div>`
+        cardEl = `  <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${obj.name}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+                    <p class="card-text">Employee ID: ${obj.id}</p>
+                    <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
+                    <p><a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a></p>
+                </div>
+            </div>`
     }
-    
+
     return cardEl;
 }
 
@@ -320,9 +331,9 @@ async function writeToFile (fileName, filePath, data) {
 
 // Converts to a <section> tag
 function convertToSection(html) {
-    return` <section>
+    return`<section>
                 ${html}
-            </section>`
+        </section>`
 }
 
 // Starts application
