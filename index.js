@@ -2,6 +2,10 @@
 const inquirer = require('inquirer-promise');
 const fs = require('fs');
 const open = require('open');
+// Applies JQ
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const $ = require( 'jquery' )( window );
 
 // Classes
 const Employee = require("./lib/employee");
