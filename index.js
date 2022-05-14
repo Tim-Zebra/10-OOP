@@ -173,10 +173,10 @@ async function generatreHTML() {
             mngSectEl = addAsHTMLComponent(htmlData, (generateCardEl(value)));
             fileName = value.name + 'sTeam.html'
         } else if (value.getRole() === 'Engineer') {
-            empSectEl.append(generateCardEl(value));
+            empSectEl = addAsHTMLComponent(htmlData, (generateCardEl(empSectEl)));
 
         } else if (value.getRole() === 'Intern') {
-            intSectEl.append(generateCardEl(value));
+            intSectEl = addAsHTMLComponent(htmlData, (generateCardEl(intSectEl)));
         }
     }
 
@@ -197,55 +197,55 @@ async function generatreHTML() {
 
 // Generates the top portion of the HMTL
 function generateHTMLHead() {
-    return `
-    <!DOCTYPE html>
-    <html lang="en-us">
+return `
+<!DOCTYPE html>
+<html lang="en-us">
 
-        <head>       
-            
-            <meta charset="UTF-8" />
+    <head>       
+        
+        <meta charset="UTF-8" />
 
-            <!-- Tab Heading -->
-            <link rel="icon" type="image/x-icon" href="./assets/images/favicons/team.ico" id="favicon"> 
-            <title>Team Builder Application</title>
+        <!-- Tab Heading -->
+        <link rel="icon" type="image/x-icon" href="./assets/images/favicons/team.ico" id="favicon"> 
+        <title>Team Builder Application</title>
 
-            <!-- CSS scripts: Bootstrap, custom-->
-            <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="./assets/css/style.css">
-        </head>
+        <!-- CSS scripts: Bootstrap, custom-->
+        <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
 
-        <body>
-            <header>
-                <h1>Manager Team Dashboard</h1>
-            </header>
-            
-            <main>
-            `;
+    <body>
+        <header>
+            <h1>Manager Team Dashboard</h1>
+        </header>
+        
+        <main>
+        `;
 }
 
 // Generates the bottom portion of the HTML.
 function generateHTMLBottom() {
-    return `
-            <main>
+return `
+    <main>
 
-            <footer>
-                Created by Timothy Zalewski 2022
-            </footer>
+    <footer class="footer">
+        <a href="https://github.com/Tim-Zebra">Application created by Timothy Zalewski, 2022</a>
+    </footer>
 
-            <!-- JS scripts: JQ, Popper.js, Bootstrap.js, custom -->
-            <script src="./assets/js/jquery.js"></script>
-            <script src="./assets/js/popper.js"></script>
-            <script src="./assets/js/bootstrap.bundle.min.js"></script>
-        </body>
-    
-    </html>`
+    <!-- JS scripts: JQ, Popper.js, Bootstrap.js, custom -->
+    <script src="../dist/assets/js/jquery.js"></script>
+    <script src="../dist/assets/js/popper.js"></script>
+    <script src="../dist/assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>`;
 }
 
 // Acts as an '.append'
-function addAsHTMLComponent(currentData, newData){
-    return `${currentData}
+function addAsHTMLComponent(currentData, newData) {
+return `${currentData}
     
-    ${newData}`
+        ${newData}`
 }
 
 // Add team member info to card, set in body of card
@@ -254,41 +254,41 @@ function generateCardEl(obj) {
     // Generates manager card, accounting for manager's unique properties
     if (obj.getRole() === 'Manager') {
         cardEl = `
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">${obj.name}e</h5>+
-                <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
-                <p class="card-text">Employee ID: ${obj.id}</p>
-                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
-                <a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a>
-            </div>
-        </div>`
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${obj.name}e</h5>+
+                        <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+                        <p class="card-text">Employee ID: ${obj.id}</p>
+                        <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
+                        <a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a>
+                    </div>
+                </div>`
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
         cardEl = `
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">${obj.name}e</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
-                <p class="card-text">Employee ID: ${obj.id}</p>
-                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
-                <a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a>
-            </div>
-        </div>`
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${obj.name}e</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                        <p class="card-text">Employee ID: ${obj.id}</p>
+                        <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
+                        <a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a>
+                    </div>
+                </div>`
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
         cardEl = `
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">${obj.name}e</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
-                <p class="card-text">Employee ID: ${obj.id}</p>
-                <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
-                <a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a>
-            </div>
-        </div>`
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${obj.name}e</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+                        <p class="card-text">Employee ID: ${obj.id}</p>
+                        <a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a>
+                        <a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a>
+                    </div>
+                </div>`
     }
 
     return cardEl;
