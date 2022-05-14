@@ -158,7 +158,7 @@ async function addIntern() {
 }
 
 // Processes obtained data 
-function generatreHTML() {
+async function generatreHTML() {
     // filenames
     let fileName = "";
     let filePath = 'C:/Users/mog_f/Desktop/bootcampfolder/Repository GetHub/Homework/10-Homework_OOP/generatedHTMLs/'
@@ -190,17 +190,19 @@ function generatreHTML() {
         main.append(intSectEl);
 
         // Adds center section to HTML file
-        htmlData.append(main);
+        htmlData = addAsHTMLComponent(htmlData, main);
 
         // Adds last section to HTML file
-        htmlData.append(generateHTMLBottom());
+        htmlData = addAsHTMLComponent(htmlData, generateHTMLBottom());
 
     // Creates HTML Page
-    writeToFile(fileName, htmlData);
+    await writeToFile(fileName, htmlData);
+    console.log('This happened', filePath+fileName);
     // Boots up HTML page
     openHTMLFile(filePath+fileName);
 }
 
+// Generates the top portion of the HMTL
 function generateHTMLHead() {
     return `
     <!DOCTYPE html>
@@ -225,6 +227,7 @@ function generateHTMLHead() {
             </header>`;
 }
 
+// Generates the bottom portion of the HTML.
 function generateHTMLBottom() {
     return `
             <!-- JS scripts: JQ, Popper.js, Bootstrap.js, custom -->
@@ -235,12 +238,20 @@ function generateHTMLBottom() {
     
     </html>`
 }
+
+// Acts as an '.append'
+function addAsHTMLComponent(currentData, newData){
+    return `${currentData}
     
+    ${newData}`
+}
+
 // Add team member info to card, set in body of card
 function generateCardEl(obj) {
+    let cardEl = '';
     // Generates manager card, accounting for manager's unique properties
     if (obj.getRole() === 'Manager') {
-        let cardEl = `
+        cardEl = `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">${obj.name}e</h5>+
@@ -253,7 +264,7 @@ function generateCardEl(obj) {
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
-        let cardEl = `
+        cardEl = `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">${obj.name}e</h5>
@@ -266,7 +277,7 @@ function generateCardEl(obj) {
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
-        let cardEl = `
+        cardEl = `
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">${obj.name}e</h5>
@@ -281,12 +292,13 @@ function generateCardEl(obj) {
     return cardEl;
 }
 
+// Opens completed HTML file
 function openHTMLFile(string) {
     open(string);
 }
 
-// Creates file
-const writeToFile = (fileName, data) => {
+// Creates file (copied from my)
+async function writeToFile (fileName, data) {
     fs.writeFile(`${fileName}`, data, (err) =>
     err ? console.error(err) : console.log('Success!'));
 }
