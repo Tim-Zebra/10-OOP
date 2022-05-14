@@ -170,7 +170,7 @@ async function generatreHTML() {
     // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
         if (value.getRole() === 'Manager') {
-            mngSectEl.append(generateCardEl(value)); 
+            mngSectEl = addAsHTMLComponent(htmlData, (generateCardEl(value)));
             fileName = value.name + 'sTeam.html'
         } else if (value.getRole() === 'Engineer') {
             empSectEl.append(generateCardEl(value));
@@ -179,17 +179,14 @@ async function generatreHTML() {
             intSectEl.append(generateCardEl(value));
         }
     }
-        // Appents elements to main
-        main.append(mngSectEl);
-        main.append(empSectEl);
-        main.append(intSectEl);
 
-        console.log('This happened', main);
-        // Adds center section to HTML file
-        htmlData = addAsHTMLComponent(htmlData, main);
+    // Adds center section ie adds elements into <main> tag
+    htmlData = addAsHTMLComponent(htmlData, mngSectEl);
+    htmlData = addAsHTMLComponent(htmlData, empSectEl);
+    htmlData = addAsHTMLComponent(htmlData, intSectEl);
 
-        // Adds last section to HTML file
-        htmlData = addAsHTMLComponent(htmlData, generateHTMLBottom());
+    // Adds last section to HTML file
+    htmlData = addAsHTMLComponent(htmlData, generateHTMLBottom());
 
     // Creates HTML Page
     await writeToFile(fileName, filePath, htmlData,);
