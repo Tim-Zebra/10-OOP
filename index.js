@@ -194,12 +194,12 @@ async function generatreHTML() {
     }
 
     // Converts El to sections tags
-    mngSectEl = convertToSection(mngSectEl);
+    mngSectEl = convertToSection(mngSectEl, 'manager');
     if(engSectEl !== undefined) {
-        engSectEl = convertToSection(engSectEl);
+        engSectEl = convertToSection(engSectEl, 'engineer');
     }
     if(intSectEl !== undefined) {
-        intSectEl = convertToSection(intSectEl);
+        intSectEl = convertToSection(intSectEl, 'intern');
     }
 
     // Adds center section ie adds elements into <main> tag only if not undefined
@@ -215,7 +215,7 @@ async function generatreHTML() {
     htmlData = addAsHTMLComponent(htmlData, generateHTMLBottom());
 
     // Creates HTML Page
-    await writeToFile(fileName, filePath, htmlData,);
+    await writeToFile(fileName, filePath, htmlData);
 
     // Boots up HTML page
     openHTMLFile(filePath+fileName);
@@ -242,7 +242,7 @@ return `
 
     <body>
         <header>
-            <h1>Manager Team Dashboard</h1>
+            <h1 class="my-auto">Manager Team Dashboard</h1>
         </header>
         
         <main>
@@ -270,7 +270,7 @@ return `
 // Acts as an '.append'
 function addAsHTMLComponent(currentData, newData) {
 return `${currentData}
-        ${newData}`
+        ${newData}`;
 }
 
 // Add team member info to card, set in body of card
@@ -281,14 +281,14 @@ function generateCardEl(obj) {
         cardEl = `<div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <div class="card-header">    
-                        <h5 class="card-title">${obj.name}e</h5>
+                        <h5 class="card-title">${obj.name}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
                     </div>
                     <p class="card-text">Employee ID: ${obj.id}</p>
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
                     <p><a href="tel:${obj.officeNum}" class="card-text">Office Number: ${obj.officeNum}</a></p>
                 </div>
-            </div>`
+            </div>`;
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
@@ -302,7 +302,7 @@ function generateCardEl(obj) {
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
                     <p><a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a></p>
                 </div>
-            </div>`
+            </div>`;
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
@@ -316,7 +316,7 @@ function generateCardEl(obj) {
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
                     <p><a href="tel:${obj.school}" class="card-text">School: ${obj.school}</a></p>
                 </div>
-            </div>`
+            </div>`;
     }
 
     return cardEl;
@@ -334,9 +334,9 @@ async function writeToFile (fileName, filePath, data) {
 }
 
 // Converts to a <section> tag
-function convertToSection(html) {
-    return`<section>
-                ${html}
+function convertToSection(html, role) {
+    return`<section class="${role}">
+            ${html}
         </section>`
 }
 
