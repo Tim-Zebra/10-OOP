@@ -11,9 +11,6 @@ const Intern = require("./lib/intern");
 let team = [];
 let needTeamMembers = true;
 
-// Creates elements
-
-
 // Creates all aspects of team
 async function createTeam() {
     // Gets manager info
@@ -159,17 +156,38 @@ async function addIntern() {
 
 // Processes obtained data 
 function generatreHTML() {
-    // Go through all the options in the array.
+    // let main = $('#main');
+    // let mngSectEl = $('<section>');
+    // let empSectEl = $('<section>');
+    // let intSectEl = $('<section>');
+
+    // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
-        console.log(value);
-        console.log(value.getRole());
+        // Finds the role and appends to the desired section
+        if (value.getRole() === 'Manager') {
+            // Add title, set as header of card
+
+            // Add attributes, set in body of card
+
+
+        } else if (value.getRole() === 'Engineer') {
+            // Add title, set as header of card
+
+            // Add attributes, set in body of card
+
+        } else if (value.getRole() === 'Intern') {
+            // Add title, set as header of card
+
+            // Add attributes, set in body of card
+
+        }
     }
-    // Be able to find data types based on class
-    // Append each of these to the main
-    // Export all of one class, then go on to the next
-    // Export Manager
-    // Export Engineer
-    // Export Intern
+
+
+    // Append each of these sections to the main. Organized by Manager, Employee, and Intern
+    // Add the card class to each of these elements inside the section
+    // Display the sections as a block
+
 
 }
 // Start application
