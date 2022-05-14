@@ -156,17 +156,18 @@ async function addIntern() {
 
 // Processes obtained data 
 function generatreHTML() {
+    // HTML Elements
     // let main = $('#main');
     // let mngSectEl = $('<section>');
     // let empSectEl = $('<section>');
     // let intSectEl = $('<section>');
-
+    
     // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
         // Finds the role and appends to the desired section
         if (value.getRole() === 'Manager') {
             // Add title, set as header of card
-
+            mngSectEl = generateHTMLEl(value); 
             // Add attributes, set in body of card
 
 
