@@ -282,7 +282,7 @@ function generateCardEl(obj) {
                 <div class="card-body">
                     <div class="card-header">    
                         <h5 class="card-title">${obj.name}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+                        <h6 class="card-subtitle mb-2">Manager</h6>
                     </div>
                     <p class="card-text">Employee ID: ${obj.id}</p>
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
@@ -295,8 +295,8 @@ function generateCardEl(obj) {
         cardEl = `<div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <div class="card-header">    
-                        <h5 class="card-title">${obj.name}e</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+                        <h5 class="card-title">${obj.name}</h5>
+                        <h6 class="card-subtitle mb-2">Engineer</h6>
                     </div>
                     <p class="card-text">Employee ID: ${obj.id}</p>
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
@@ -309,8 +309,8 @@ function generateCardEl(obj) {
         cardEl = `<div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <div class="card-header"> 
-                        <h5 class="card-title">${obj.name}e</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+                        <h5 class="card-title">${obj.name}</h5>
+                        <h6 class="card-subtitle mb-2">Intern</h6>
                     </div>
                     <p class="card-text">Employee ID: ${obj.id}</p>
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>

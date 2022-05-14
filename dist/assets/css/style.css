@@ -12,7 +12,7 @@ header h1 {
 
 footer {
   /* Sends footer to the bottom and centers*/
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   text-align: center;
@@ -22,4 +22,83 @@ footer {
 footer a {
   color:black;
   text-decoration: none;
+}
+
+/* Card section adjustments */
+.manager,
+.engineer,
+.intern {
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.manager div div div,
+.engineer div div div,
+.intern div div div {
+  /* color: rgb(56, 153, 51); */
+  /* font-weight: 1000; */
+  text-align: center;
+}
+
+/* card header */
+.manager div div div h5 {
+  font-size: 26px;
+}
+
+.engineer div div div h5 {
+  font-size: 23px;
+}
+
+.intern div div div h5 {
+  font-size: 20px;
+}
+
+/* sub-header */
+.manager div div div h6 {
+  color: rgba(97, 191, 88, 0.792);
+}
+
+.engineer div div div h6 {
+  color: rgb(71, 133, 178, 0.792);
+}
+
+.intern div div div h6 {
+  color: rgb(207, 147, 73, 0.792);
+}
+
+/* Animation */
+.card {
+  margin: 10px;
+  height: 250px;
+  box-shadow: 10px 5px 5px grey;
+}
+
+.manager .card:hover {
+  transition: 0.3s;
+  box-shadow: -15px -20px 10px rgb(76, 192, 66);
+}
+
+.engineer .card:hover {
+  transition: 0.3s;
+  box-shadow: -15px -20px 10px rgb(89, 168, 224);
+}
+
+.intern .card:hover {
+  transition: 0.3s;
+  box-shadow: -15px -20px 10px rgb(236, 167, 83);
+}
+
+.card a {
+  color:black;
+  text-decoration: none;
+}
+
+.card a:hover {
+  color:rgb(86, 86, 170);
+  text-decoration:underline;
 }
