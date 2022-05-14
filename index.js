@@ -163,10 +163,9 @@ async function generatreHTML() {
     let htmlData = generateHTMLHead();
 
     // HTML Elements
-    let main = $('<main>');
-    let mngSectEl = $('<section>');
-    let empSectEl = $('<section>');
-    let intSectEl = $('<section>');
+    let mngSectEl ='';
+    let empSectEl ='';
+    let intSectEl ='';
     
     // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
@@ -221,12 +220,21 @@ function generateHTMLHead() {
         <body>
             <header>
                 <h1>Manager Team Dashboard</h1>
-            </header>`;
+            </header>
+            
+            <main>
+            `;
 }
 
 // Generates the bottom portion of the HTML.
 function generateHTMLBottom() {
     return `
+            <main>
+
+            <footer>
+                Created by Timothy Zalewski 2022
+            </footer>
+
             <!-- JS scripts: JQ, Popper.js, Bootstrap.js, custom -->
             <script src="./assets/js/jquery.js"></script>
             <script src="./assets/js/popper.js"></script>
