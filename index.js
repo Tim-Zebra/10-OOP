@@ -163,17 +163,19 @@ async function generatreHTML() {
     let htmlData = generateHTMLHead();
 
     // HTML Elements
-    let mngSectEl ='';
-    let empSectEl ='';
-    let intSectEl ='';
+    let mngSectEl;
+    let engSectEl;
+    let intSectEl;
     
     // Go through all the options in the array, and adds those to their respective section
     for (const value of team) {
         if (value.getRole() === 'Manager') {
             mngSectEl = addAsHTMLComponent(mngSectEl, (generateCardEl(value)));
+            
+            // creates part of file name based off manager's name
             fileName = value.name + 'sTeam.html'
         } else if (value.getRole() === 'Engineer') {
-            empSectEl = addAsHTMLComponent(empSectEl, (generateCardEl(value)));
+            engSectEl = addAsHTMLComponent(engSectEl, (generateCardEl(value)));
 
         } else if (value.getRole() === 'Intern') {
             intSectEl = addAsHTMLComponent(intSectEl, (generateCardEl(value)));
@@ -182,13 +184,21 @@ async function generatreHTML() {
 
     // Converts El to sections tags
     mngSectEl = convertToSection(mngSectEl);
-    empSectEl = convertToSection(empSectEl);
-    intSectEl = convertToSection(intSectEl);
+    if(engSectEl !== undefined) {
+        engSectEl = convertToSection(engSectEl);
+    }
+    if(intSectEl !== undefined) {
+        intSectEl = convertToSection(intSectEl);
+    }
 
-    // Adds center section ie adds elements into <main> tag
+    // Adds center section ie adds elements into <main> tag only if not undefined
     htmlData = addAsHTMLComponent(htmlData, mngSectEl);
-    htmlData = addAsHTMLComponent(htmlData, empSectEl);
-    htmlData = addAsHTMLComponent(htmlData, intSectEl);
+    if(engSectEl !== undefined) {
+        htmlData = addAsHTMLComponent(htmlData, engSectEl);
+    }
+    if(intSectEl !== undefined) {
+        htmlData = addAsHTMLComponent(htmlData, intSectEl);
+    }
 
     // Adds last section to HTML file
     htmlData = addAsHTMLComponent(htmlData, generateHTMLBottom());
@@ -254,10 +264,10 @@ return `${currentData}
 
 // Add team member info to card, set in body of card
 function generateCardEl(obj) {
-    let cardEl = '';
+    let cardEl;
     // Generates manager card, accounting for manager's unique properties
     if (obj.getRole() === 'Manager') {
-        cardEl = `<div class="card" style="width: 18rem;">
+        cardEl = `------      <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <div class="card-header">    
                             <h5 class="card-title">${obj.name}e</h5>
@@ -271,7 +281,7 @@ function generateCardEl(obj) {
     } 
     // Generates engineer card, accounting for engineer's unique properties
     else if (obj.getRole() === 'Engineer') {
-        cardEl = `<div class="card" style="width: 18rem;">
+        cardEl = `      <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">${obj.name}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
@@ -283,7 +293,7 @@ function generateCardEl(obj) {
     } 
     // Generates intern card, accounting for intern's unique properties
     else if (obj.getRole() === 'Intern') {
-        cardEl = `<div class="card" style="width: 18rem;">
+        cardEl = `      <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">${obj.name}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
@@ -293,7 +303,7 @@ function generateCardEl(obj) {
                     </div>
                 </div>`
     }
-
+    
     return cardEl;
 }
 
@@ -310,9 +320,9 @@ async function writeToFile (fileName, filePath, data) {
 
 // Converts to a <section> tag
 function convertToSection(html) {
-return`<section>
-            ${html}
-        </section>`
+    return` <section>
+                ${html}
+            </section>`
 }
 
 // Starts application
