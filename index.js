@@ -166,15 +166,19 @@ async function generatreHTML() {
     let mngSectEl;
     let engSectEl;
     let intSectEl;
-    
-    console.log('This happened', mngSectEl);
 
     // Go through all the employees in the array, and adds those to their respective section
     for (const value of team) {
         if (value.getRole() === 'Manager') {
             // creates part of file name based off manager's name
-            fileName = value.name + 'sTeam.html'
-            
+            // turns manager's name to lower case and removes spaces
+            for(let k = 0; k < value.name.length; k++) {
+                if(value.name[k].toLowerCase() !== ' ') {
+                    fileName += value.name[k].toLowerCase();
+                }
+            }
+            fileName += 'Team.html';
+
             mngSectEl = generateCardEl(value);
         } else if (value.getRole() === 'Engineer') {
             // Prevents extra space from forming in HTML when undefined
@@ -300,7 +304,7 @@ function generateCardEl(obj) {
                     </div>
                     <p class="card-text">Employee ID: ${obj.id}</p>
                     <p><a href="mailto:${obj.email}" class="card-text">Email: ${obj.email}</a></p>
-                    <p><a href="tel:${obj.github}" class="card-text">GitHub: ${obj.officeNum}</a></p>
+                    <p><a href="https://github.com/${obj.github}" class="card-text">GitHub: ${obj.github}</a></p>
                 </div>
             </div>`;
     } 
