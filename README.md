@@ -34,7 +34,7 @@ A simple team builder that takes in manager information, and allows the manager 
 <p align="center"><img src="./demos/demo_terminal.gif" alt="session expiration demo" width="800" height="auto"/></p> <br />
 <h2 align="center">HTML display</h2>
 <p align="center"><img src="./demos/demo_Cards.gif" alt="session expiration demo" width="800" height="auto"/></p> <br />
-<p align="center"><font size="4"><a href="https://drive.google.com/file/d/1U-1swBech54cXyp0kz1k_hjd7ZzuixeY/view">Video Demo</a></font></p>
+<p align="center"><font size="4"><a href="https://drive.google.com/file/d/1ZCGdHLo8OsF6rS-oTLztQgilz26Flq_e/view">Video Demo</a></font></p>
 
 ## Link to Deployed Page:
 N/A
